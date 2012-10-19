@@ -9,7 +9,8 @@ VERSION = '0.1'
 
 requires = [ 
      'fabric', 
-     'python-novaclient == 2.6.0', # novaclient version 2.6.0 has the v1 code
+     'rackspace-novaclient', # rackspace-novaclient gets all the extensions for RS Cloud
+     'openstack.compute',  # First-Gen Cloud Servers
      'python-cloudlb'
      ]
 
@@ -20,6 +21,7 @@ setup(
       author = __author__,
       author_email = "david@wittman.com",
       license = "BSD",
+      dependency_links= ['https://github.com/jacobian/openstack.compute/zipball/master#egg=openstack.compute'],
 
       packages = find_packages('src'),
       package_dir = { '' : 'src' },

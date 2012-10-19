@@ -15,7 +15,7 @@ from fabrack.utils import make_roles
 env.public_ip = True
 env.servers_path = os.path.expanduser('~/.fabrackservers')
 # in rdict, key => @role name :: value => search term
-env.rdict = {'web': 'web', 'db': 'db', 'cache': 'varnish'}
+env.rdict = {'jstraw': 'stroz', 'dwittman': 'witt', 'cache': 'varnish'}
 
 if not os.path.exists(env.servers_path):
     servers.generate()

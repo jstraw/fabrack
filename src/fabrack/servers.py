@@ -12,17 +12,18 @@ from fabrack.utils import create_server_list, get_server_list
 
 @runs_once
 @task
-def generate(user='', apikey='', region="US"):
+def generate():
   """Generate a list of servers from the Rackspace Cloud API"""
   if os.path.exists(env.servers_path):
     overwrite = raw_input("Overwrite existing server list? (y/n) ")
     if overwrite.lower() != 'y':
       sys.exit(1)
-  while user is '' or apikey is '':
-    user = raw_input("Rackspace Cloud Username: ")
-    apikey = raw_input("Rackspace Cloud API Key: ")
+  user = env.rs.get('user', raw_input("Rackspace Cloud Username: "))
+  apikey = env.rs.get('apikey', raw_input("Rackspace Cloud API Key: "))
+  account_id = env.rs.get('account_id', raw_input("Rackspace Cloud Account/Tenant ID"))
+  region = env.rs.get('region', 'us')
 
-  create_server_list(user, apikey, region)
+  create_server_list(user, apikey, account_id, region)
 
 @runs_once
 @task
